@@ -114,9 +114,12 @@
 
         alert('Submission successful! Action: ' + action + (action === 'Skipped' ? ', Reason: ' + feedback : ''));
 
-        // Refresh the page after the alert is closed
-        window.location.reload();
+        // Delay the reload to ensure the GA4 event is sent
+        setTimeout(function() {
+            window.location.reload();
+        }, 500); // Delay in milliseconds
     });
 </script>
+
 </body>
 </html>
