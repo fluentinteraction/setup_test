@@ -81,39 +81,42 @@
         </form>
     </div>
 
-    <script>
-        // Handle the visibility of the feedback form
-        document.getElementById('action').addEventListener('change', function() {
-            var feedbackContainer = document.getElementById('feedbackContainer');
-            if (this.value === 'Skipped') {
-                feedbackContainer.style.display = 'block';
-            } else {
-                feedbackContainer.style.display = 'none';
-            }
+<script>
+    // Handle the visibility of the feedback form
+    document.getElementById('action').addEventListener('change', function() {
+        var feedbackContainer = document.getElementById('feedbackContainer');
+        if (this.value === 'Skipped') {
+            feedbackContainer.style.display = 'block';
+        } else {
+            feedbackContainer.style.display = 'none';
+        }
+    });
+
+    // Capture the action selection and feedback (if applicable) and send it to GA4
+    document.getElementById('actionForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var action = document.getElementById('action').value;
+        var feedback = document.getElementById('feedback').value;
+
+        gtag('event', 'action_selection', {
+            'event_category': 'User Interaction',
+            'event_label': 'Action 1',
+            'value': action
         });
 
-        // Capture the action selection and feedback (if applicable) and send it to GA4
-        document.getElementById('actionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var action = document.getElementById('action').value;
-            var feedback = document.getElementById('feedback').value;
-
-            gtag('event', 'action_selection', {
+        if (action === 'Skipped') {
+            gtag('event', 'skipped_reason', {
                 'event_category': 'User Interaction',
-                'event_label': 'Action 1',
-                'value': action
+                'event_label': 'Skipped reason',
+                'value': feedback
             });
+        }
 
-            if (action === 'Skipped') {
-                gtag('event', 'skipped_reason', {
-                    'event_category': 'User Interaction',
-                    'event_label': 'Skipped reason',
-                    'value': feedback
-                });
-            }
+        alert('Submission successful! Action: ' + action + (action === 'Skipped' ? ', Reason: ' + feedback : ''));
 
-            alert('Submission successful! Action: ' + action + (action === 'Skipped' ? ', Reason: ' + feedback : ''));
-        });
-    </script>
+        // Refresh the page after the alert is closed
+        window.location.reload();
+    });
+</script>
 </body>
 </html>
