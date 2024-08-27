@@ -4,51 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Action Feedback Form</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f4f4f4;
-        color: #333;
-    }
-    .container {
-        max-width: 500px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        border-radius: 8px;
-    }
-    h1 {
-        text-align: center;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-    select, input[type="text"], input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box; /* Ensures padding is included in the width */
-    }
-    input[type="submit"] {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #0056b3;
-    }
-    #feedbackContainer {
-        display: none;
-    }
-</style> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select, input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #feedbackContainer1, #feedbackContainer2 {
+            display: none;
+        }
+    </style>
     <!-- GA4 Tracking Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYJFTSXW0K"></script>
     <script>
@@ -63,82 +63,99 @@
     <div class="container">
         <h1>Action Feedback Form</h1>
         
-        <form id="actionForm">
-            <label for="action">Action 1:</label>
-            <select id="action" name="action">
+        <!-- Action 1 -->
+        <form id="actionForm1">
+            <label for="action1">Action 1:</label>
+            <select id="action1" name="action1">
                 <option value="" disabled selected>Please select</option>
                 <option value="In progress">In progress</option>
                 <option value="Complete">Complete</option>
                 <option value="Skipped">Skipped</option>
             </select>
 
-            <div id="feedbackContainer">
-                <label for="feedback">Please state why you have skipped:</label>
-                <input type="text" id="feedback" name="feedback">
+            <div id="feedbackContainer1">
+                <label for="feedback1">Please state why you have skipped:</label>
+                <input type="text" id="feedback1" name="feedback1">
             </div>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit Action 1">
+        </form>
+
+        <!-- Action 2 -->
+        <form id="actionForm2">
+            <label for="action2">Action 2:</label>
+            <select id="action2" name="action2">
+                <option value="" disabled selected>Please select</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+
+            <div id="feedbackContainer2">
+                <label for="feedback2">Please state why you have skipped:</label>
+                <input type="text" id="feedback2" name="feedback2">
+            </div>
+
+            <input type="submit" value="Submit Action 2">
         </form>
     </div>
 
-<script>
-    // Handle the visibility of the feedback form
-    document.getElementById('action').addEventListener('change', function() {
-        var feedbackContainer = document.getElementById('feedbackContainer');
-        if (this.value === 'Skipped') {
-            feedbackContainer.style.display = 'block';
-        } else {
-            feedbackContainer.style.display = 'none';
-        }
-    });
-
-    // Capture the action selection and feedback (if applicable) and send it to GA4
-    document.getElementById('actionForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var action = document.getElementById('action').value;
-        var feedback = document.getElementById('feedback').value;
-
-        // Log the action to ensure the correct value is being captured
-        console.log('Selected Action:', action);
-
-        // Send action selection to GA4
-        gtag('event', 'action_selection', {
-            'event_category': 'User Interaction',
-            'event_label': 'Action 1',
-            'value': action
-        });
-
-        // Log the GA4 event to check that it's being sent
-        console.log('Action selection event sent to GA4:', {
-            'event_category': 'User Interaction',
-            'event_label': 'Action 1',
-            'value': action
-        });
-
-        if (action === 'Skipped') {
-            // Send skipped reason to GA4
-            gtag('event', 'skipped_reason', {
-                'event_category': 'User Interaction',
-                'event_label': 'Skipped reason',
-                'value': feedback
-            });
-
-            // Log the GA4 event for skipped reason
-            console.log('Skipped reason event sent to GA4:', {
-                'event_category': 'User Interaction',
-                'event_label': 'Skipped reason',
-                'value': feedback
-            });
+    <script>
+        // Function to handle the visibility of the feedback form based on action selection
+        function handleActionChange(actionId, feedbackContainerId) {
+            var actionElement = document.getElementById(actionId);
+            var feedbackContainer = document.getElementById(feedbackContainerId);
+            if (actionElement.value === 'Skipped') {
+                feedbackContainer.style.display = 'block';
+            } else {
+                feedbackContainer.style.display = 'none';
+            }
         }
 
-        // Use a short delay to ensure data is sent before reloading
-        setTimeout(function() {
-            window.location.reload();
-        }, 1000); // 1 second delay to ensure GA data is sent
-    });
-</script>
+        document.getElementById('action1').addEventListener('change', function() {
+            handleActionChange('action1', 'feedbackContainer1');
+        });
 
+        document.getElementById('action2').addEventListener('change', function() {
+            handleActionChange('action2', 'feedbackContainer2');
+        });
 
+        // Function to handle form submission
+        function handleFormSubmit(actionTitle, actionId, feedbackId) {
+            var action = document.getElementById(actionId).value;
+            var feedback = document.getElementById(feedbackId).value;
 
+            // Send action selection to GA4
+            gtag('event', 'action_selection', {
+                'event_category': 'User Interaction',
+                'event_label': actionTitle,
+                'value': action
+            });
+
+            // Send skipped reason to GA4 if applicable
+            if (action === 'Skipped') {
+                gtag('event', 'skipped_reason', {
+                    'event_category': 'User Interaction',
+                    'event_label': actionTitle + ' Skipped reason',
+                    'value': feedback
+                });
+            }
+
+            // Delay the reload to ensure GA data is sent
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000); // 1 second delay to ensure GA data is sent
+        }
+
+        document.getElementById('actionForm1').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('Action 1', 'action1', 'feedback1');
+        });
+
+        document.getElementById('actionForm2').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('Action 2', 'action2', 'feedback2');
+        });
+    </script>
 </body>
 </html>
