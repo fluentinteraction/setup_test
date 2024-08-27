@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color and Feedback Form</title>
+    <title>Action Feedback Form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,6 +44,9 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        #feedbackForm {
+            display: none;
+        }
     </style>
     <!-- GA4 Tracking Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYJFTSXW0K"></script>
@@ -57,45 +60,56 @@
 </head>
 <body>
     <div class="container">
-        <h1>Feedback Form</h1>
+        <h1>Action Feedback Form</h1>
         
-        <form id="colorForm">
-            <label for="color">Choose a colour:</label>
-            <select id="color" name="color">
-                <option value="Red">Red</option>
-                <option value="Blue">Blue</option>
-                <option value="Green">Green</option>
+        <form id="actionForm">
+            <label for="action">Action 1:</label>
+            <select id="action" name="action">
+                <option value="" disabled selected>Please select</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
             </select>
-            <input type="submit" value="Submit Colour">
+            <input type="submit" value="Submit Action">
         </form>
 
         <form id="feedbackForm">
-            <label for="feedback">Please provide feedback:</label>
+            <label for="feedback">Please state why you have skipped:</label>
             <input type="text" id="feedback" name="feedback">
             <input type="submit" value="Submit Feedback">
         </form>
     </div>
 
     <script>
-        // Capture the color selection and send it to GA4
-        document.getElementById('colorForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var color = document.getElementById('color').value;
-            gtag('event', 'color_selection', {
-                'event_category': 'User Interaction',
-                'event_label': 'Color',
-                'value': color
-            });
-            alert('Color choice submitted: ' + color);
+        // Handle the visibility of the feedback form
+        document.getElementById('action').addEventListener('change', function() {
+            var feedbackForm = document.getElementById('feedbackForm');
+            if (this.value === 'Skipped') {
+                feedbackForm.style.display = 'block';
+            } else {
+                feedbackForm.style.display = 'none';
+            }
         });
 
-        // Capture the feedback and send it to GA4
+        // Capture the action selection and send it to GA4
+        document.getElementById('actionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var action = document.getElementById('action').value;
+            gtag('event', 'action_selection', {
+                'event_category': 'User Interaction',
+                'event_label': 'Action 1',
+                'value': action
+            });
+            alert('Action choice submitted: ' + action);
+        });
+
+        // Capture the feedback (skipped reason) and send it to GA4
         document.getElementById('feedbackForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var feedback = document.getElementById('feedback').value;
-            gtag('event', 'feedback_submission', {
+            gtag('event', 'skipped_reason', {
                 'event_category': 'User Interaction',
-                'event_label': 'Feedback',
+                'event_label': 'Skipped reason',
                 'value': feedback
             });
             alert('Feedback submitted: ' + feedback);
@@ -103,4 +117,3 @@
     </script>
 </body>
 </html>
- 
