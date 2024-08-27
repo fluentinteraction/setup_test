@@ -98,8 +98,18 @@
         var action = document.getElementById('action').value;
         var feedback = document.getElementById('feedback').value;
 
+        // Log the action to ensure the correct value is being captured
+        console.log('Selected Action:', action);
+
         // Send action selection to GA4
         gtag('event', 'action_selection', {
+            'event_category': 'User Interaction',
+            'event_label': 'Action 1',
+            'value': action
+        });
+
+        // Log the GA4 event to check that it's being sent
+        console.log('Action selection event sent to GA4:', {
             'event_category': 'User Interaction',
             'event_label': 'Action 1',
             'value': action
@@ -112,6 +122,13 @@
                 'event_label': 'Skipped reason',
                 'value': feedback
             });
+
+            // Log the GA4 event for skipped reason
+            console.log('Skipped reason event sent to GA4:', {
+                'event_category': 'User Interaction',
+                'event_label': 'Skipped reason',
+                'value': feedback
+            });
         }
 
         // Use a short delay to ensure data is sent before reloading
@@ -120,6 +137,7 @@
         }, 1000); // 1 second delay to ensure GA data is sent
     });
 </script>
+
 
 
 </body>
