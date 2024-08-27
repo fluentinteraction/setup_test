@@ -44,7 +44,7 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-        #feedbackForm {
+        #feedbackContainer {
             display: none;
         }
     </style>
@@ -70,49 +70,48 @@
                 <option value="Complete">Complete</option>
                 <option value="Skipped">Skipped</option>
             </select>
-            <input type="submit" value="Submit Action">
-        </form>
 
-        <form id="feedbackForm">
-            <label for="feedback">Please state why you have skipped:</label>
-            <input type="text" id="feedback" name="feedback">
-            <input type="submit" value="Submit Feedback">
+            <div id="feedbackContainer">
+                <label for="feedback">Please state why you have skipped:</label>
+                <input type="text" id="feedback" name="feedback">
+            </div>
+
+            <input type="submit" value="Submit">
         </form>
     </div>
 
     <script>
         // Handle the visibility of the feedback form
         document.getElementById('action').addEventListener('change', function() {
-            var feedbackForm = document.getElementById('feedbackForm');
+            var feedbackContainer = document.getElementById('feedbackContainer');
             if (this.value === 'Skipped') {
-                feedbackForm.style.display = 'block';
+                feedbackContainer.style.display = 'block';
             } else {
-                feedbackForm.style.display = 'none';
+                feedbackContainer.style.display = 'none';
             }
         });
 
-        // Capture the action selection and send it to GA4
+        // Capture the action selection and feedback (if applicable) and send it to GA4
         document.getElementById('actionForm').addEventListener('submit', function(event) {
             event.preventDefault();
             var action = document.getElementById('action').value;
+            var feedback = document.getElementById('feedback').value;
+
             gtag('event', 'action_selection', {
                 'event_category': 'User Interaction',
                 'event_label': 'Action 1',
                 'value': action
             });
-            alert('Action choice submitted: ' + action);
-        });
 
-        // Capture the feedback (skipped reason) and send it to GA4
-        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var feedback = document.getElementById('feedback').value;
-            gtag('event', 'skipped_reason', {
-                'event_category': 'User Interaction',
-                'event_label': 'Skipped reason',
-                'value': feedback
-            });
-            alert('Feedback submitted: ' + feedback);
+            if (action === 'Skipped') {
+                gtag('event', 'skipped_reason', {
+                    'event_category': 'User Interaction',
+                    'event_label': 'Skipped reason',
+                    'value': feedback
+                });
+            }
+
+            alert('Submission successful! Action: ' + action + (action === 'Skipped' ? ', Reason: ' + feedback : ''));
         });
     </script>
 </body>
