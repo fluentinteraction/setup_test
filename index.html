@@ -129,7 +129,7 @@
             gtag('event', 'action_selection', {
                 'event_category': 'User Interaction',
                 'event_label': actionTitle,
-                'value': action
+                'event_value': action
             });
 
             // Send skipped reason to GA4 if applicable
@@ -137,7 +137,7 @@
                 gtag('event', 'skipped_reason', {
                     'event_category': 'User Interaction',
                     'event_label': actionTitle + ' Skipped reason',
-                    'value': feedback
+                    'event_value': feedback
                 });
             }
 
