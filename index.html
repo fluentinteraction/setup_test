@@ -126,7 +126,7 @@
             var feedback = document.getElementById(feedbackId).value;
 
             // Send action selection to GA4
-            gtag('event', 'action_selection', {
+            gtag('event', 'action_status', {
                 'event_category': 'User Interaction',
                 'event_label': actionTitle,
                 'event_value': action
@@ -136,7 +136,7 @@
             if (action === 'Skipped') {
                 gtag('event', 'skipped_reason', {
                     'event_category': 'User Interaction',
-                    'event_label': actionTitle + ' Skipped reason',
+                    'event_label': actionTitle + 'Skipped reason',
                     'event_value': feedback
                 });
             }
