@@ -209,103 +209,74 @@
     </div>
 
     <script>
-        // Handle the visibility of the feedback form based on action/step selection
-        function handleSelectionChange(selectId, feedbackContainerId) {
-            var selectElement = document.getElementById(selectId);
-            var feedbackContainer = document.getElementById(feedbackContainerId);
-            if (selectElement.value === 'Skipped') {
-                feedbackContainer.style.display = 'block';
-            } else {
-                feedbackContainer.style.display = 'none';
-            }
-        }
+ // Handle form submission for actions and steps
+function handleFormSubmit(eventName, actionLabel, stepLabel, selectId, feedbackId) {
+    var selectElement = document.getElementById(selectId).value;
+    var feedback = document.getElementById(feedbackId).value;
 
-        // Bind event listeners for all select elements
-        document.getElementById('action1').addEventListener('change', function() {
-            handleSelectionChange('action1', 'feedbackContainer1');
-        });
-        document.getElementById('step1').addEventListener('change', function() {
-            handleSelectionChange('step1', 'feedbackContainerStep1');
-        });
-        document.getElementById('step2').addEventListener('change', function() {
-            handleSelectionChange('step2', 'feedbackContainerStep2');
-        });
-        document.getElementById('step3').addEventListener('change', function() {
-            handleSelectionChange('step3', 'feedbackContainerStep3');
-        });
-        document.getElementById('action2').addEventListener('change', function() {
-            handleSelectionChange('action2', 'feedbackContainer2');
-        });
-        document.getElementById('step4').addEventListener('change', function() {
-            handleSelectionChange('step4', 'feedbackContainerStep4');
-        });
-        document.getElementById('step5').addEventListener('change', function() {
-            handleSelectionChange('step5', 'feedbackContainerStep5');
-        });
-        document.getElementById('step6').addEventListener('change', function() {
-            handleSelectionChange('step6', 'feedbackContainerStep6');
-        });
+    // Prepare the event data
+    var eventData = {
+        'event_category': 'User Interaction',
+        'event_value': selectElement,
+        'action_label': actionLabel
+    };
 
-        // Handle form submission for actions and steps
-        function handleFormSubmit(eventName, eventLabel, selectId, feedbackId) {
-            var selectElement = document.getElementById(selectId).value;
-            var feedback = document.getElementById(feedbackId).value;
+    // If a step label is provided, include it in the event data
+    if (stepLabel) {
+        eventData['step_label'] = stepLabel;
+    }
 
-            // Send action/step status to GA4
-            gtag('event', eventName, {
-                'event_category': 'User Interaction',
-                'event_label': eventLabel,
-                'event_value': selectElement
-            });
+    // Send action/step status to GA4
+    gtag('event', eventName, eventData);
 
-            // Send skipped reason to GA4 if applicable
-            if (selectElement === 'Skipped') {
-                gtag('event', 'skipped_reason', {
-                    'event_category': 'User Interaction',
-                    'event_label': eventLabel + ' Skipped reason',
-                    'event_value': feedback
-                });
-            }
+    // Send skipped reason to GA4 if applicable
+    if (selectElement === 'Skipped') {
+        gtag('event', 'skipped_reason', {
+            'event_category': 'User Interaction',
+            'event_label': actionLabel + (stepLabel ? ' ' + stepLabel : '') + ' Skipped reason',
+            'event_value': feedback
+        });
+    }
 
-            // Delay the reload to ensure GA data is sent
-            setTimeout(function() {
-                window.location.reload();
-            }, 1000); // 1 second delay to ensure GA data is sent
-        }
+    // Delay the reload to ensure GA data is sent
+    setTimeout(function() {
+        window.location.reload();
+    }, 1000); // 1 second delay to ensure GA data is sent
+}
 
-        // Bind submit event listeners for all forms
-        document.getElementById('actionForm1').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('action_status', 'Action 1', 'action1', 'feedback1');
-        });
-        document.getElementById('stepForm1').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 1', 'step1', 'feedbackStep1');
-        });
-        document.getElementById('stepForm2').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 2', 'step2', 'feedbackStep2');
-        });
-        document.getElementById('stepForm3').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 3', 'step3', 'feedbackStep3');
-        });
-        document.getElementById('actionForm2').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('action_status', 'Action 2', 'action2', 'feedback2');
-        });
-        document.getElementById('stepForm4').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 1', 'step4', 'feedbackStep4');
-        });
-        document.getElementById('stepForm5').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 2', 'step5', 'feedbackStep5');
-        });
-        document.getElementById('stepForm6').addEventListener('submit', function(event) {
-            event.preventDefault();
-            handleFormSubmit('step_status', 'Step 3', 'step6', 'feedbackStep6');
-        });
+// Bind submit event listeners for all forms
+document.getElementById('actionForm1').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('action_status', 'Action 1', null, 'action1', 'feedback1');
+});
+document.getElementById('stepForm1').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 1', 'Step 1', 'step1', 'feedbackStep1');
+});
+document.getElementById('stepForm2').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 1', 'Step 2', 'step2', 'feedbackStep2');
+});
+document.getElementById('stepForm3').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 1', 'Step 3', 'step3', 'feedbackStep3');
+});
+document.getElementById('actionForm2').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('action_status', 'Action 2', null, 'action2', 'feedback2');
+});
+document.getElementById('stepForm4').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 2', 'Step 1', 'step4', 'feedbackStep4');
+});
+document.getElementById('stepForm5').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 2', 'Step 2', 'step5', 'feedbackStep5');
+});
+document.getElementById('stepForm6').addEventListener('submit', function(event) {
+    event.preventDefault();
+    handleFormSubmit('step_status', 'Action 2', 'Step 3', 'step6', 'feedbackStep6');
+});
     </script>
 </body>
 </html>
