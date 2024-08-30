@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Action Feedback Form</title>
+    <title>GA event test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,16 +12,31 @@
             background-color: #f4f4f4;
             color: #333;
         }
-        .container {
-            max-width: 500px;
+        .title-container {
+            max-width: 600px;
             margin: 0 auto;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .box-container {
+            max-width: 400px;
+            margin: 0 auto 40px;
             background: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             border-radius: 8px;
         }
         h1 {
-            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 16;
+            margin-bottom: 12px;
+            font-size: 20px;
         }
         label {
             display: block;
@@ -31,10 +46,11 @@
         select, input[type="text"], input[type="submit"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             border-radius: 5px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+            font-size: 16px;
         }
         input[type="submit"] {
             background-color: #007bff;
@@ -45,7 +61,7 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-        #feedbackContainer1, #feedbackContainer2 {
+        .feedback-container {
             display: none;
         }
     </style>
@@ -56,87 +72,197 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-NYJFTSXW0K');
+      gtag('config', 'G-NYJFTSXW0K', { 'debug_mode': true });
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Action Feedback Form</h1>
-        
-        <!-- Action 1 -->
+    <!-- Title Section -->
+    <div class="title-container">
+        <h1>GA event test</h1>
+    </div>
+
+    <!-- Action 1 and Steps -->
+    <div class="box-container">
+        <h2>Action 1</h2>
         <form id="actionForm1">
-            <label for="action1">Action 1:</label>
+            
             <select id="action1" name="action1">
-                <option value="" disabled selected>Please select</option>
+                <option value="" disabled selected>Select status</option>
                 <option value="In progress">In progress</option>
                 <option value="Complete">Complete</option>
                 <option value="Skipped">Skipped</option>
             </select>
-
-            <div id="feedbackContainer1">
+            <div id="feedbackContainer1" class="feedback-container">
                 <label for="feedback1">Please state why you have skipped:</label>
                 <input type="text" id="feedback1" name="feedback1">
             </div>
-
-            <input type="submit" value="Submit Action 1">
+            <input type="submit" value="Submit">
         </form>
 
-        <!-- Action 2 -->
-        <form id="actionForm2">
-            <label for="action2">Action 2:</label>
-            <select id="action2" name="action2">
-                <option value="" disabled selected>Please select</option>
+        <h3>Step 1</h3>
+        <form id="stepForm1">
+        <select id="step1" name="step1">
+                <option value="" disabled selected>Select status</option>
                 <option value="In progress">In progress</option>
                 <option value="Complete">Complete</option>
                 <option value="Skipped">Skipped</option>
             </select>
+            <div id="feedbackContainerStep1" class="feedback-container">
+                <label for="feedbackStep1">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep1" name="feedbackStep1">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
 
-            <div id="feedbackContainer2">
+        <h3>Step 2</h3>
+        <form id="stepForm2">
+            <select id="step2" name="step2">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainerStep2" class="feedback-container">
+                <label for="feedbackStep2">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep2" name="feedbackStep2">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h3>Step 3</h3>
+        <form id="stepForm3">
+            <select id="step3" name="step3">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainerStep3" class="feedback-container">
+                <label for="feedbackStep3">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep3" name="feedbackStep3">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- Action 2 and Steps -->
+    <div class="box-container">
+        <h2>Action 2</h2>
+        <form id="actionForm2">
+            <select id="action2" name="action2">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainer2" class="feedback-container">
                 <label for="feedback2">Please state why you have skipped:</label>
                 <input type="text" id="feedback2" name="feedback2">
             </div>
+            <input type="submit" value="Submit">
+        </form>
 
-            <input type="submit" value="Submit Action 2">
+        <h3>Step 1</h3>
+        <form id="stepForm4">
+            <select id="step4" name="step4">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainerStep4" class="feedback-container">
+                <label for="feedbackStep4">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep4" name="feedbackStep4">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h3>Step 2</h3>
+        <form id="stepForm5">
+            <select id="step5" name="step5">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainerStep5" class="feedback-container">
+                <label for="feedbackStep5">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep5" name="feedbackStep5">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h3>Step 3</h3>
+        <form id="stepForm6">
+            <select id="step6" name="step6">
+                <option value="" disabled selected>Select status</option>
+                <option value="In progress">In progress</option>
+                <option value="Complete">Complete</option>
+                <option value="Skipped">Skipped</option>
+            </select>
+            <div id="feedbackContainerStep6" class="feedback-container">
+                <label for="feedbackStep6">Please state why you have skipped:</label>
+                <input type="text" id="feedbackStep6" name="feedbackStep6">
+            </div>
+            <input type="submit" value="Submit">
         </form>
     </div>
 
     <script>
-        // Function to handle the visibility of the feedback form based on action selection
-        function handleActionChange(actionId, feedbackContainerId) {
-            var actionElement = document.getElementById(actionId);
+        // Handle the visibility of the feedback form based on action/step selection
+        function handleSelectionChange(selectId, feedbackContainerId) {
+            var selectElement = document.getElementById(selectId);
             var feedbackContainer = document.getElementById(feedbackContainerId);
-            if (actionElement.value === 'Skipped') {
+            if (selectElement.value === 'Skipped') {
                 feedbackContainer.style.display = 'block';
             } else {
                 feedbackContainer.style.display = 'none';
             }
         }
 
+        // Bind event listeners for all select elements
         document.getElementById('action1').addEventListener('change', function() {
-            handleActionChange('action1', 'feedbackContainer1');
+            handleSelectionChange('action1', 'feedbackContainer1');
         });
-
+        document.getElementById('step1').addEventListener('change', function() {
+            handleSelectionChange('step1', 'feedbackContainerStep1');
+        });
+        document.getElementById('step2').addEventListener('change', function() {
+            handleSelectionChange('step2', 'feedbackContainerStep2');
+        });
+        document.getElementById('step3').addEventListener('change', function() {
+            handleSelectionChange('step3', 'feedbackContainerStep3');
+        });
         document.getElementById('action2').addEventListener('change', function() {
-            handleActionChange('action2', 'feedbackContainer2');
+            handleSelectionChange('action2', 'feedbackContainer2');
+        });
+        document.getElementById('step4').addEventListener('change', function() {
+            handleSelectionChange('step4', 'feedbackContainerStep4');
+        });
+        document.getElementById('step5').addEventListener('change', function() {
+            handleSelectionChange('step5', 'feedbackContainerStep5');
+        });
+        document.getElementById('step6').addEventListener('change', function() {
+            handleSelectionChange('step6', 'feedbackContainerStep6');
         });
 
-        // Function to handle form submission
-        function handleFormSubmit(actionTitle, actionId, feedbackId) {
-            var action = document.getElementById(actionId).value;
+        // Handle form submission for actions and steps
+        function handleFormSubmit(eventName, eventLabel, selectId, feedbackId) {
+            var selectElement = document.getElementById(selectId).value;
             var feedback = document.getElementById(feedbackId).value;
 
-            // Send action selection to GA4
-            gtag('event', 'action_status', {
+            // Send action/step status to GA4
+            gtag('event', eventName, {
                 'event_category': 'User Interaction',
-                'event_label': actionTitle,
-                'event_value': action
+                'event_label': eventLabel,
+                'event_value': selectElement
             });
 
             // Send skipped reason to GA4 if applicable
-            if (action === 'Skipped') {
+            if (selectElement === 'Skipped') {
                 gtag('event', 'skipped_reason', {
                     'event_category': 'User Interaction',
-                    'event_label': actionTitle + 'Skipped reason',
+                    'event_label': eventLabel + ' Skipped reason',
                     'event_value': feedback
                 });
             }
@@ -147,14 +273,38 @@
             }, 1000); // 1 second delay to ensure GA data is sent
         }
 
+        // Bind submit event listeners for all forms
         document.getElementById('actionForm1').addEventListener('submit', function(event) {
             event.preventDefault();
-            handleFormSubmit('Action 1', 'action1', 'feedback1');
+            handleFormSubmit('action_status', 'Action 1', 'action1', 'feedback1');
         });
-
+        document.getElementById('stepForm1').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 1', 'step1', 'feedbackStep1');
+        });
+        document.getElementById('stepForm2').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 2', 'step2', 'feedbackStep2');
+        });
+        document.getElementById('stepForm3').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 3', 'step3', 'feedbackStep3');
+        });
         document.getElementById('actionForm2').addEventListener('submit', function(event) {
             event.preventDefault();
-            handleFormSubmit('Action 2', 'action2', 'feedback2');
+            handleFormSubmit('action_status', 'Action 2', 'action2', 'feedback2');
+        });
+        document.getElementById('stepForm4').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 1', 'step4', 'feedbackStep4');
+        });
+        document.getElementById('stepForm5').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 2', 'step5', 'feedbackStep5');
+        });
+        document.getElementById('stepForm6').addEventListener('submit', function(event) {
+            event.preventDefault();
+            handleFormSubmit('step_status', 'Step 3', 'step6', 'feedbackStep6');
         });
     </script>
 </body>
