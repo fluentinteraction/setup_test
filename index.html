@@ -80,29 +80,6 @@
     <div class="title-container">
         <h1>GA event test</h1>
     </div>
-    <!-- Business Size Selection -->
-    <div class="box-container">
-        <h3>Business Size</h3>
-        <form id="businessSizeForm">
-            <label for="businessSize">Select your business size:</label>
-            <select id="businessSize" name="businessSize">
-                <option value="" disabled selected>Select business size</option>
-                <option value="Just me">Just me</option>
-                <option value="1-10 people">1-10 people</option>
-                <option value="11-25 people">11-25 people</option>
-                <option value="26-50 people">26-50 people</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    
-        <!-- Layer 1 Completion -->
-    <div class="box-container">
-        <h3>Layer 1</h3>
-        <form id="layerForm1">
-            <input type="button" id="layerCompleteBtn" value="Mark as complete">
-        </form>
-    </div>
 
     <!-- Action 1 and Steps -->
     <div class="box-container">
@@ -167,6 +144,29 @@
         </form>
     </div>
 
+    <!-- Business Size Selection -->
+    <div class="box-container">
+        <h3>Business Size</h3>
+        <form id="businessSizeForm">
+            <label for="businessSize">Select your business size:</label>
+            <select id="businessSize" name="businessSize">
+                <option value="" disabled selected>Select business size</option>
+                <option value="Just me">Just me</option>
+                <option value="1-10 people">1-10 people</option>
+                <option value="11-25 people">11-25 people</option>
+                <option value="26-50 people">26-50 people</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- Layer 1 Completion -->
+    <div class="box-container">
+        <h3>Layer 1</h3>
+        <form id="layerForm1">
+            <input type="button" id="layerCompleteBtn" value="Mark as complete">
+        </form>
+    </div>
 
     <!-- Action 2 and Steps -->
     <div class="box-container">
@@ -270,21 +270,16 @@
     });
 
     // Handle form submission for actions and steps
-    function handleFormSubmit(eventName, actionLabel, stepLabel, selectId, feedbackId) {
+    function handleFormSubmit(eventName, actionId, stepId, selectId, feedbackId, valueName) {
         var selectElement = document.getElementById(selectId).value;
         var feedback = document.getElementById(feedbackId).value;
 
         // Prepare the event data for action or step status
         var eventData = {
             'event_category': 'User Interaction',
-            'event_value': selectElement,
-            'action_label': actionLabel
+            [valueName]: selectElement,
+            [stepId ? 'step_id' : 'action_id']: stepId || actionId
         };
-
-        // If a step label is provided, include it in the event data
-        if (stepLabel) {
-            eventData['step_label'] = stepLabel;
-        }
 
         // Send action/step status to GA4
         gtag('event', eventName, eventData);
@@ -293,14 +288,9 @@
         if (selectElement === 'Skipped') {
             var skippedData = {
                 'event_category': 'User Interaction',
-                'action_label': actionLabel,
-                'event_value': feedback // Here we are sending the free text as the event_value
+                [valueName]: feedback,
+                [stepId ? 'step_id' : 'action_id']: stepId || actionId
             };
-
-            // Include the step label if applicable
-            if (stepLabel) {
-                skippedData['step_label'] = stepLabel;
-            }
 
             gtag('event', 'skipped_reason', skippedData);
         }
@@ -314,35 +304,35 @@
     // Bind submit event listeners for all forms
     document.getElementById('actionForm1').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('action_status', 'Action 1', null, 'action1', 'feedback1');
+        handleFormSubmit('action_status', 'Action 1', null, 'action1', 'feedback1', 'action_value');
     });
     document.getElementById('stepForm1').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 1', 'step1', 'feedbackStep1');
+        handleFormSubmit('step_status', 'Action 1', 'Step 1', 'step1', 'feedbackStep1', 'step_value');
     });
     document.getElementById('stepForm2').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 2', 'step2', 'feedbackStep2');
+        handleFormSubmit('step_status', 'Action 1', 'Step 2', 'step2', 'feedbackStep2', 'step_value');
     });
     document.getElementById('stepForm3').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 3', 'step3', 'feedbackStep3');
+        handleFormSubmit('step_status', 'Action 1', 'Step 3', 'step3', 'feedbackStep3', 'step_value');
     });
     document.getElementById('actionForm2').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('action_status', 'Action 2', null, 'action2', 'feedback2');
+        handleFormSubmit('action_status', 'Action 2', null, 'action2', 'feedback2', 'action_value');
     });
     document.getElementById('stepForm4').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 1', 'step4', 'feedbackStep4');
+        handleFormSubmit('step_status', 'Action 2', 'Step 1', 'step4', 'feedbackStep4', 'step_value');
     });
     document.getElementById('stepForm5').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 2', 'step5', 'feedbackStep5');
+        handleFormSubmit('step_status', 'Action 2', 'Step 2', 'step5', 'feedbackStep5', 'step_value');
     });
     document.getElementById('stepForm6').addEventListener('submit', function(event) {
         event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 3', 'step6', 'feedbackStep6');
+        handleFormSubmit('step_status', 'Action 2', 'Step 3', 'step6', 'feedbackStep6', 'step_value');
     });
 
     // Handle Business Size submission
@@ -352,8 +342,7 @@
 
         var eventData = {
             'event_category': 'User Interaction',
-            'event_value': businessSize,
-            'dimension_value': businessSize // Uses the custom dimension for business size
+            'business_size_value': businessSize
         };
 
         // Send the business size event to GA4
@@ -369,8 +358,8 @@
     document.getElementById('layerCompleteBtn').addEventListener('click', function() {
         var eventData = {
             'event_category': 'User Interaction',
-            'event_value': 'Complete',
-            'dimension_value': 'Layer 1'
+            'layer_value': 'Complete',
+            'layer_id': 'Layer 1'
         };
 
         // Send the layer completion event to GA4
