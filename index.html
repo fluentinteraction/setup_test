@@ -81,6 +81,30 @@
         <h1>GA event test</h1>
     </div>
 
+    <!-- Business Size Selection -->
+    <div class="box-container">
+        <h3>Business Size</h3>
+        <form id="businessSizeForm">
+            <label for="businessSize">Select your business size:</label>
+            <select id="businessSize" name="businessSize">
+                <option value="" disabled selected>Select business size</option>
+                <option value="Just me">Just me</option>
+                <option value="1-10 people">1-10 people</option>
+                <option value="11-25 people">11-25 people</option>
+                <option value="26-50 people">26-50 people</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+        <!-- Layer 1 Completion -->
+    <div class="box-container">
+        <h3>Layer 1</h3>
+        <form id="layerForm1">
+            <input type="button" id="layerCompleteBtn" value="Mark as complete">
+        </form>
+    </div>
+
     <!-- Action 1 and Steps -->
     <div class="box-container">
         <h2>Action 1</h2>
@@ -144,29 +168,8 @@
         </form>
     </div>
 
-    <!-- Business Size Selection -->
-    <div class="box-container">
-        <h3>Business Size</h3>
-        <form id="businessSizeForm">
-            <label for="businessSize">Select your business size:</label>
-            <select id="businessSize" name="businessSize">
-                <option value="" disabled selected>Select business size</option>
-                <option value="Just me">Just me</option>
-                <option value="1-10 people">1-10 people</option>
-                <option value="11-25 people">11-25 people</option>
-                <option value="26-50 people">26-50 people</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
 
-    <!-- Layer 1 Completion -->
-    <div class="box-container">
-        <h3>Layer 1</h3>
-        <form id="layerForm1">
-            <input type="button" id="layerCompleteBtn" value="Mark as complete">
-        </form>
-    </div>
+
 
     <!-- Action 2 and Steps -->
     <div class="box-container">
@@ -284,11 +287,11 @@
         // Send action/step status to GA4
         gtag('event', eventName, eventData);
 
-        // If "Skipped" is selected, send the skipped reason as a separate event
+        // If "Skipped" is selected, send the skipped reason using the 'skipped_value'
         if (selectElement === 'Skipped') {
             var skippedData = {
                 'event_category': 'User Interaction',
-                [valueName]: feedback,
+                'skipped_value': feedback,
                 [stepId ? 'step_id' : 'action_id']: stepId || actionId
             };
 
