@@ -96,8 +96,8 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    
-        <!-- Layer 1 Completion -->
+
+    <!-- Layer 1 Completion -->
     <div class="box-container">
         <h3>Layer 1</h3>
         <form id="layerForm1">
@@ -167,9 +167,6 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-
-
-
 
     <!-- Action 2 and Steps -->
     <div class="box-container">
@@ -281,7 +278,8 @@
         var eventData = {
             'event_category': 'User Interaction',
             [valueName]: selectElement,
-            [stepId ? 'step_id' : 'action_id']: stepId || actionId
+            'action_id': actionId, // Include action_id for both actions and steps
+            'step_id': stepId || null // Only include step_id for step events
         };
 
         // Send action/step status to GA4
@@ -292,7 +290,8 @@
             var skippedData = {
                 'event_category': 'User Interaction',
                 'skipped_value': feedback,
-                [stepId ? 'step_id' : 'action_id']: stepId || actionId
+                'action_id': actionId, // Include action_id
+                'step_id': stepId || null // Include step_id for steps
             };
 
             gtag('event', 'skipped_reason', skippedData);
