@@ -54,10 +54,8 @@
             padding-top: 10px;
             border-top: 1px solid #ddd;
         }
-        /* Button alignment */
-        .step a {
-            display: inline-block;
-            margin-right: 10px;
+        .action-links {
+            margin-bottom: 10px;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYJFTSXW0K"></script>
@@ -105,9 +103,17 @@
 
 <div id="alertBox" class="alert"></div>
 
+<h1>Security Steps</h1>
+
 <!-- Action 1: Secure your business's email accounts -->
 <div class="section">
     <h3>Secure your business's email accounts</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action1', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action1', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action1', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action1', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Change your password to be strong and separate to your other accounts</span><br>
         <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Done')">Done</a>
@@ -134,6 +140,12 @@
 <!-- Action 2: Use a password manager -->
 <div class="section">
     <h3>Use a password manager</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action2', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action2', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action2', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action2', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Choose a password manager</span><br>
         <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Done')">Done</a>
@@ -167,6 +179,12 @@
 <!-- Action 3: Secure your organisation's important online accounts -->
 <div class="section">
     <h3>Secure your organisation's important online accounts</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Make a list of your important online accounts</span><br>
         <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
@@ -200,6 +218,12 @@
 <!-- Action 4: Update your devices -->
 <div class="section">
     <h3>Update your devices</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action4', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action4', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action4', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action4', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Make a list of your devices</span><br>
         <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Done')">Done</a>
@@ -233,6 +257,12 @@
 <!-- Action 5: Check your apps are up to date -->
 <div class="section">
     <h3>Check your apps are up to date</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action5', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action5', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action5', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action5', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Make a list of all your apps</span><br>
         <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Done')">Done</a>
@@ -252,6 +282,12 @@
 <!-- Action 6: Backup your important work files and data -->
 <div class="section">
     <h3>Backup your important work files and data</h3>
+    <div class="action-links">
+        <a class="link" onclick="sendActionStatus('Action6', 'Done')">Done</a>
+        <a class="link" onclick="sendActionStatus('Action6', 'Already done')">Already done</a>
+        <a class="link" onclick="sendActionStatus('Action6', 'Not applicable')">Not applicable</a>
+        <a class="link" onclick="sendActionStatus('Action6', 'Skip')">Skip</a>
+    </div>
     <div class="step">
         <span class="action-header">Step 1 - Assess your business’s data and identify what you need to back up</span><br>
         <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Done')">Done</a>
