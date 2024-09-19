@@ -3,375 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GA event test</title>
+    <title>Security Steps</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
         }
-        .title-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .box-container {
-            max-width: 400px;
-            margin: 0 auto 40px;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        h1 {
+        .section {
             margin-bottom: 20px;
         }
-        h2 {
-            margin-top: 0;
-            margin-bottom: 20px;
+        .section h3 {
+            margin: 10px 0;
         }
-        h3 {
-            margin-top: 16px;
-            margin-bottom: 12px;
-            font-size: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        select, input[type="text"], input[type="submit"], input[type="button"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 24px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        input[type="submit"], input[type="button"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+        .link {
+            color: blue;
             cursor: pointer;
+            text-decoration: none;
+            margin-right: 5px;
         }
-        input[type="submit"]:hover, input[type="button"]:hover {
-            background-color: #0056b3;
+        .link:hover {
+            text-decoration: underline;
         }
-        .feedback-container {
+        .alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
             display: none;
         }
     </style>
-    <!-- GA4 Tracking Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYJFTSXW0K"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        // GA4 initialization and enabling debug mode
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-      gtag('config', 'G-NYJFTSXW0K', { 'debug_mode': true });
+        gtag('config', 'G-NYJFTSXW0K', {
+            'debug_mode': true
+        });
+
+        // Function to show alert and remove it after 4 seconds
+        function showAlert(message) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.innerText = message;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 4000);
+        }
+
+        // Function to send action status to GA4
+        function sendActionStatus(action_id, action_value) {
+            gtag('event', 'action_status', {
+                'action_id': action_id,
+                'action_value': action_value
+            });
+            showAlert(`Action: ${action_id}, Value: ${action_value}`);
+        }
+
+        // Function to send step status to GA4
+        function sendStepStatus(action_id, step_id, step_value) {
+            gtag('event', 'step_status', {
+                'action_id': action_id,
+                'step_id': step_id,
+                'step_value': step_value
+            });
+            showAlert(`Action: ${action_id}, Step: ${step_id}, Value: ${step_value}`);
+        }
     </script>
 </head>
 <body>
-    <!-- Title Section -->
-    <div class="title-container">
-        <h1>GA event test</h1>
-    </div>
 
-    <!-- Business Size Selection -->
-    <div class="box-container">
-        <h3>Business Size</h3>
-        <form id="businessSizeForm">
-            <label for="businessSize">Select your business size:</label>
-            <select id="businessSize" name="businessSize">
-                <option value="" disabled selected>Select business size</option>
-                <option value="Just me">Just me</option>
-                <option value="1-10 people">1-10 people</option>
-                <option value="11-25 people">11-25 people</option>
-                <option value="26-50 people">26-50 people</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+<div id="alertBox" class="alert"></div>
 
-    <!-- Layer 1 Completion -->
-    <div class="box-container">
-        <h3>Layer 1</h3>
-        <form id="layerForm1">
-            <input type="button" id="layerCompleteBtn" value="Mark as complete">
-        </form>
-    </div>
+<div class="section">
+    <h3>Secure your business's email accounts</h3>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Skip')">Skip</a>
+</div>
 
-    <!-- Action 1 and Steps -->
-    <div class="box-container">
-        <h2>Action 1</h2>
-        <form id="actionForm1">
-            <select id="action1" name="action1">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainer1" class="feedback-container">
-                <label for="feedback1">Please state why you have skipped:</label>
-                <input type="text" id="feedback1" name="feedback1">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
+<div class="section">
+    <h3>Use a password manager</h3>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Skip')">Skip</a>
+</div>
 
-        <h3>Step 1</h3>
-        <form id="stepForm1">
-        <select id="step1" name="step1">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep1" class="feedback-container">
-                <label for="feedbackStep1">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep1" name="feedbackStep1">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
+<div class="section">
+    <h3>Secure your organisation's important online accounts</h3>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+</div>
 
-        <h3>Step 2</h3>
-        <form id="stepForm2">
-            <select id="step2" name="step2">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep2" class="feedback-container">
-                <label for="feedbackStep2">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep2" name="feedbackStep2">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
+<div class="section">
+    <h3>Update your devices</h3>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Skip')">Skip</a>
+</div>
 
-        <h3>Step 3</h3>
-        <form id="stepForm3">
-            <select id="step3" name="step3">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep3" class="feedback-container">
-                <label for="feedbackStep3">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep3" name="feedbackStep3">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+<div class="section">
+    <h3>Check your apps are up to date</h3>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Skip')">Skip</a>
+</div>
 
-    <!-- Action 2 and Steps -->
-    <div class="box-container">
-        <h2>Action 2</h2>
-        <form id="actionForm2">
-            <select id="action2" name="action2">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainer2" class="feedback-container">
-                <label for="feedback2">Please state why you have skipped:</label>
-                <input type="text" id="feedback2" name="feedback2">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
+<div class="section">
+    <h3>Backup your important work files and data</h3>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Skip')">Skip</a>
+    <br>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Done')">Done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Already done')">Already done</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Not applicable')">Not applicable</a>
+    <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Skip')">Skip</a>
+</div>
 
-        <h3>Step 1</h3>
-        <form id="stepForm4">
-            <select id="step4" name="step4">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep4" class="feedback-container">
-                <label for="feedbackStep4">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep4" name="feedbackStep4">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-
-        <h3>Step 2</h3>
-        <form id="stepForm5">
-            <select id="step5" name="step5">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep5" class="feedback-container">
-                <label for="feedbackStep5">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep5" name="feedbackStep5">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-
-        <h3>Step 3</h3>
-        <form id="stepForm6">
-            <select id="step6" name="step6">
-                <option value="" disabled selected>Select status</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
-                <option value="Skipped">Skipped</option>
-            </select>
-            <div id="feedbackContainerStep6" class="feedback-container">
-                <label for="feedbackStep6">Please state why you have skipped:</label>
-                <input type="text" id="feedbackStep6" name="feedbackStep6">
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-    <script>
-    // Handle the visibility of the feedback form based on action/step selection
-    function handleSelectionChange(selectId, feedbackContainerId) {
-        var selectElement = document.getElementById(selectId);
-        var feedbackContainer = document.getElementById(feedbackContainerId);
-        if (selectElement.value === 'Skipped') {
-            feedbackContainer.style.display = 'block';
-        } else {
-            feedbackContainer.style.display = 'none';
-        }
-    }
-
-    // Bind event listeners for all select elements
-    document.getElementById('action1').addEventListener('change', function() {
-        handleSelectionChange('action1', 'feedbackContainer1');
-    });
-    document.getElementById('step1').addEventListener('change', function() {
-        handleSelectionChange('step1', 'feedbackContainerStep1');
-    });
-    document.getElementById('step2').addEventListener('change', function() {
-        handleSelectionChange('step2', 'feedbackContainerStep2');
-    });
-    document.getElementById('step3').addEventListener('change', function() {
-        handleSelectionChange('step3', 'feedbackContainerStep3');
-    });
-    document.getElementById('action2').addEventListener('change', function() {
-        handleSelectionChange('action2', 'feedbackContainer2');
-    });
-    document.getElementById('step4').addEventListener('change', function() {
-        handleSelectionChange('step4', 'feedbackContainerStep4');
-    });
-    document.getElementById('step5').addEventListener('change', function() {
-        handleSelectionChange('step5', 'feedbackContainerStep5');
-    });
-    document.getElementById('step6').addEventListener('change', function() {
-        handleSelectionChange('step6', 'feedbackContainerStep6');
-    });
-
-    // Handle form submission for actions and steps
-    function handleFormSubmit(eventName, actionId, stepId, selectId, feedbackId, valueName) {
-        var selectElement = document.getElementById(selectId).value;
-        var feedback = document.getElementById(feedbackId).value;
-
-        // Prepare the event data for action or step status
-        var eventData = {
-            'event_category': 'User Interaction',
-            [valueName]: selectElement,
-            'action_id': actionId, // Include action_id for both actions and steps
-            'step_id': stepId || null // Only include step_id for step events
-        };
-
-        // Send action/step status to GA4
-        gtag('event', eventName, eventData);
-
-        // If "Skipped" is selected, send the skipped reason using the 'skipped_value'
-        if (selectElement === 'Skipped') {
-            var skippedData = {
-                'event_category': 'User Interaction',
-                'skipped_value': feedback,
-                'action_id': actionId, // Include action_id
-                'step_id': stepId || null // Include step_id for steps
-            };
-
-            gtag('event', 'skipped_reason', skippedData);
-        }
-
-        // Delay the reload to ensure GA data is sent
-        setTimeout(function() {
-            window.location.reload();
-        }, 1000); // 1 second delay to ensure GA data is sent
-    }
-
-    // Bind submit event listeners for all forms
-    document.getElementById('actionForm1').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('action_status', 'Action 1', null, 'action1', 'feedback1', 'action_value');
-    });
-    document.getElementById('stepForm1').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 1', 'step1', 'feedbackStep1', 'step_value');
-    });
-    document.getElementById('stepForm2').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 2', 'step2', 'feedbackStep2', 'step_value');
-    });
-    document.getElementById('stepForm3').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 1', 'Step 3', 'step3', 'feedbackStep3', 'step_value');
-    });
-    document.getElementById('actionForm2').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('action_status', 'Action 2', null, 'action2', 'feedback2', 'action_value');
-    });
-    document.getElementById('stepForm4').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 1', 'step4', 'feedbackStep4', 'step_value');
-    });
-    document.getElementById('stepForm5').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 2', 'step5', 'feedbackStep5', 'step_value');
-    });
-    document.getElementById('stepForm6').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit('step_status', 'Action 2', 'Step 3', 'step6', 'feedbackStep6', 'step_value');
-    });
-
-    // Handle Business Size submission
-    document.getElementById('businessSizeForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var businessSize = document.getElementById('businessSize').value;
-
-        var eventData = {
-            'event_category': 'User Interaction',
-            'business_size_value': businessSize
-        };
-
-        // Send the business size event to GA4
-        gtag('event', 'business_size', eventData);
-
-        // Reload the page after a short delay to ensure data is sent
-        setTimeout(function() {
-            window.location.reload();
-        }, 1000); 
-    });
-
-    // Handle Layer 1 completion
-    document.getElementById('layerCompleteBtn').addEventListener('click', function() {
-        var eventData = {
-            'event_category': 'User Interaction',
-            'layer_value': 'Complete',
-            'layer_id': 'Layer 1'
-        };
-
-        // Send the layer completion event to GA4
-        gtag('event', 'layer_status', eventData);
-
-        // Reload the page after a short delay
-        setTimeout(function() {
-            window.location.reload();
-        }, 1000);
-    });
-    </script>
 </body>
 </html>
