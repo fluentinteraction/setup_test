@@ -8,8 +8,17 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: #f5f5f5;
+            text-align: center; /* Center-aligns the content horizontally */
+        }
+        .container {
+            max-width: 800px; /* Set max width for content */
+            margin: 0 auto; /* Horizontally centers the container */
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 32px;
         }
         .section {
             background-color: #fff;
@@ -17,19 +26,15 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Content inside boxes remains left-aligned */
         }
-        .section h3 {
-            font-size: 18px;
+        .section h2 {
+            font-size: 20px;
             color: #333;
-            margin: 0 0 10px;
+            margin: 0 0 12px; /* Adds 12px space below the heading */
         }
-        .link {
-            color: #0073e6;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-            margin-right: 15px;
-        }
+       
+       
         .link:hover {
             text-decoration: underline;
         }
@@ -46,16 +51,33 @@
             z-index: 999;
         }
         .step {
-            margin-top: 10px;
+            margin-top: 20px; /* Adds margin above each step */
+            padding-left: 20px;
+            border-left: 5px solid #ddd;
         }
-        .action-header {
+        .step-header {
             font-weight: bold;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
+    
         }
         .action-links {
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Adds space below the links */
+            
+        }
+         .step-links {
+            margin-bottom: 20px; /* Adds space below the links */
+            padding-top: 12px;
+        }
+        .separator {
+            border-top: 0px solid #ddd;
+            margin: 12px 0; /* Adds space above and below the line */
+        }
+        
+        .link {
+            color: #0073e6;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            margin-right: 15px;
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NYJFTSXW0K"></script>
@@ -103,219 +125,297 @@
 
 <div id="alertBox" class="alert"></div>
 
-<h1>Security Steps</h1>
+<div class="container">
+    <h1>Cotrustee GA4 test</h1>
 
-<!-- Action 1: Secure your business's email accounts -->
-<div class="section">
-    <h3>Secure your business's email accounts</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action1', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action1', 'Skip')">Skip</a>
+    <!-- Action 1: Secure your business's email accounts -->
+    <div class="section">
+        <h2>Secure your business's email accounts</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action1', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action1', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action1', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action1', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Change your password to be strong and separate to your other accounts</span><br>
+            	<div class="step-links">
+            		<a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Done')">Done</a>
+            		<a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Already done')">Already done</a>
+            		<a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Not applicable')">Not applicable</a>
+            		<a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Skip')">Skip</a>
+            	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Turn on 2-step verification</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Skip')">Skip</a>
+            </div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Secure all accounts</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Not applicable')">Not applicable</a>
+           		<a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Skip')">Skip</a>
+           	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Change your password to be strong and separate to your other accounts</span><br>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step1', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Turn on 2-step verification</span><br>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step2', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 3 - Secure all accounts</span><br>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action1', 'Step3', 'Skip')">Skip</a>
-    </div>
-</div>
 
-<!-- Action 2: Use a password manager -->
-<div class="section">
-    <h3>Use a password manager</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action2', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action2', 'Skip')">Skip</a>
+    <!-- Action 2: Use a password manager -->
+    <div class="section">
+        <h2>Use a password manager</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action2', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action2', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action2', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action2', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Choose a password manager</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Choose a secure master password</span><br>
+           	<div class="step-links">
+           	 	<a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Done')">Done</a>
+           	 	<a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Turn on 2-step verification</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Skip')">Skip</a>
+       		</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 4 - Share solution with staff</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Choose a password manager</span><br>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step1', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Choose a secure master password</span><br>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step2', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 3 - Turn on 2-step verification</span><br>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step3', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 4 - Share solution with staff</span><br>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action2', 'Step4', 'Skip')">Skip</a>
-    </div>
-</div>
 
-<!-- Action 3: Secure your organisation's important online accounts -->
-<div class="section">
-    <h3>Secure your organisation's important online accounts</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+    <!-- Action 3: Secure your organisation's important online accounts -->
+    <div class="section">
+        <h2>Secure your organisation's important online accounts</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Make a list of your important online accounts</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
+           		<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Change your password to be strong & separate to your other accounts</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
+           	 	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Turn on 2-step verification for each account</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 4 - Ask others to secure their accounts </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Make a list of your important online accounts</span><br>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+    
+    <!-- Action 4: Update your devices -->
+    <div class="section">
+        <h2>Update your devices</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Make a list of your devices </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
+           		<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Update to the latest operating system </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
+           	 	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Turn on automatic updates </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 4 - Update staff devices</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Change your password to be strong & separate to your other accounts</span><br>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+    
+    <!-- Action 5: Check your apps are up to date -->
+    <div class="section">
+        <h2>Check your apps are up to date</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Make a list of all your apps </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
+           		<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Update your apps </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
+           	 	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Turn on automatic updates </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 4 - Check your browser is up to date </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 5 - Make sure your staff are updating their apps  </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 3 - Turn on 2-step verification for each account</span><br>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+    
+        <!-- Action 6: Backup your important work files and data -->
+    <div class="section">
+        <h2>Backup your important work files and data</h2>
+        <div class="action-links">
+            <a class="link" onclick="sendActionStatus('Action3', 'Done')">Done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Already done')">Already done</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Not applicable')">Not applicable</a>
+            <a class="link" onclick="sendActionStatus('Action3', 'Skip')">Skip</a>
+        </div>
+        <div class="separator"></div>
+        <div class="step">
+            <span class="step-header">Step 1 - Assess your business’s data and identify what you need to back up  </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Done')">Done</a>
+           		<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step1', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 2 - Choose a backup method </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Done')">Done</a>
+           	 	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step2', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 3 - Turn on automatic backups  </span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step3', 'Skip')">Skip</a>
+        	</div>
+        </div>
+        <div class="step">
+            <span class="step-header">Step 4 - Make sure your backup is protected</span><br>
+            <div class="step-links">
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
+            	<a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
+        	</div>
+        </div>
     </div>
-    <div class="step">
-        <span class="action-header">Step 4 - Turn on 2-step verification for each account</span><br>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action3', 'Step4', 'Skip')">Skip</a>
-    </div>
-</div>
 
-<!-- Action 4: Update your devices -->
-<div class="section">
-    <h3>Update your devices</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action4', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action4', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action4', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action4', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Make a list of your devices</span><br>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step1', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Update to the latest operating system</span><br>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step2', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 3 - Turn on automatic updates</span><br>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step3', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 4 - Update staff devices</span><br>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action4', 'Step4', 'Skip')">Skip</a>
-    </div>
-</div>
-
-<!-- Action 5: Check your apps are up to date -->
-<div class="section">
-    <h3>Check your apps are up to date</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action5', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action5', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action5', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action5', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Make a list of all your apps</span><br>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step1', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Update your apps</span><br>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action5', 'Step2', 'Skip')">Skip</a>
-    </div>
-</div>
-
-<!-- Action 6: Backup your important work files and data -->
-<div class="section">
-    <h3>Backup your important work files and data</h3>
-    <div class="action-links">
-        <a class="link" onclick="sendActionStatus('Action6', 'Done')">Done</a>
-        <a class="link" onclick="sendActionStatus('Action6', 'Already done')">Already done</a>
-        <a class="link" onclick="sendActionStatus('Action6', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendActionStatus('Action6', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 1 - Assess your business’s data and identify what you need to back up</span><br>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step1', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 2 - Choose a backup method</span><br>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step2', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 3 - Turn on automatic backups</span><br>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step3', 'Skip')">Skip</a>
-    </div>
-    <div class="step">
-        <span class="action-header">Step 4 - Make sure your backup is protected</span><br>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Done')">Done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Already done')">Already done</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Not applicable')">Not applicable</a>
-        <a class="link" onclick="sendStepStatus('Action6', 'Step4', 'Skip')">Skip</a>
-    </div>
 </div>
 
 </body>
